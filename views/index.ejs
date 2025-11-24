@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <h1>All Categories</h1>
+    <ul>
+        <% categories.forEach((category)=> { %>
+            <li>
+                <strong>
+                    <%= category.name %>
+                </strong>
+                <a href="/categories/<%= category.id%>/update">Update</a>
+                <a href="/categories/<%= category.id%>/details">Items</a>
+                <form action="/categories/<%= category.id %>/delete" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+
+
+
+            </li>
+
+            <% }) %>
+    </ul>
+
+    <a href="/categories/create">Create a new category</a>
+</body>
+
+</html>

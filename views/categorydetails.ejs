@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Details</title>
+    <link rel="stylesheet" href="/styles/categorydetails.css">
+</head>
+
+<body>
+    <% if (category) { %>
+        <h1>
+            <%= category.name %>
+        </h1>
+        <h3>
+            <%= category.description %>
+        </h3>
+
+        <h2>Items in this category:</h2>
+
+        <% if (items && items.length> 0) { %>
+            <ul class="item-list">
+                <% items.forEach((item)=> { %>
+                    <li class="item-card">
+                        <div class="item-info">
+
+                            <p><strong>Name:</strong>
+                                <%= item.name %>
+                            </p>
+
+                            <p><strong>Description:</strong>
+                                <%= item.description %>
+                            </p>
+                            <p><strong>Stock:</strong>
+                                <%= item.stock %>
+                            </p>
+                            <p><strong>Price:</strong> $<%= item.price %>
+                            </p>
+                        </div>
+
+                        <div class="item-actions">
+                            <form action="/items/delete" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<%= item.id %>">
+                                <input type="hidden" name="category_id" value="<%= category.id %>">
+                                <button type="submit">Delete</button>
+
+
+                            </form>
+                            <a href="/items/<%= item.id %>/update">Edit</a>
+
+
+                        </div>
+                    </li>
+                    <% }) %>
+                        <form action="/items/create" method="get">
+                            <input type="hidden" name="category" value="<%= category.id %>">
+                            <button type="submit">Add an item</button>
+
+                        </form>
+            </ul>
+            <% } else { %>
+                <p>No items found in this category.</p>
+
+
+
+                <% } %>
+
+
+                    <a href="/categories">Back to categories</a>
+
+                    <% } else { %>
+                        <p>Category not found.</p>
+                        <% } %>
+</body>
+
+</html>
