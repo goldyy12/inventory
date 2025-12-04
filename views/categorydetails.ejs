@@ -24,11 +24,9 @@
                 <% items.forEach((item)=> { %>
                     <li class="item-card">
                         <div class="item-info">
-
                             <p><strong>Name:</strong>
                                 <%= item.name %>
                             </p>
-
                             <p><strong>Description:</strong>
                                 <%= item.description %>
                             </p>
@@ -38,40 +36,27 @@
                             <p><strong>Price:</strong> $<%= item.price %>
                             </p>
                         </div>
-
                         <div class="item-actions">
                             <form action="/items/delete" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<%= item.id %>">
                                 <input type="hidden" name="category_id" value="<%= category.id %>">
                                 <button type="submit">Delete</button>
-
-
                             </form>
                             <a href="/items/<%= item.id %>/update">Edit</a>
-
-
                         </div>
                     </li>
                     <% }) %>
-                        <form action="/items/create" method="get">
-                            <input type="hidden" name="category" value="<%= category.id %>">
-                            <button type="submit">Add an item</button>
-
-                        </form>
             </ul>
             <% } else { %>
                 <p>No items found in this category.</p>
-
-
-
                 <% } %>
 
+                    <!-- Always show Add Item button -->
+                    <form action="/items/create" method="get">
+                        <input type="hidden" name="category" value="<%= category.id %>">
+                        <button type="submit">Add an item</button>
+                    </form>
 
                     <a href="/categories">Back to categories</a>
-
-                    <% } else { %>
-                        <p>Category not found.</p>
-                        <% } %>
-</body>
 
 </html>
