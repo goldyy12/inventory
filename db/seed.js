@@ -1,4 +1,4 @@
-const pool = require("./db/pool"); // <- adjust path if needed
+const pool = require("./pool"); // 
 
 async function seed() {
     try {
